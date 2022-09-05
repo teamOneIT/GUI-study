@@ -1,0 +1,8 @@
+activationFunctionType = {
+  "0": "NONE",
+  "1": "RELU",
+  "2": "RELU_N1_TO_1",
+  "3": "RELU6",
+  "4": "TANH",
+  "5": "SIGN_BIT"
+}
