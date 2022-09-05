@@ -5,19 +5,23 @@ const viewer = document.getElementById("viewer");
 const func = ["NONE", "RELU", "RELU_N1_TO_1", "RELU6", "TANH", "SIGN_BIT"];
 
 function detail(num) {
-    const op = data.subgraphs[0].operators[num];
-    const str = BuiltinOperator[data.operatorCodes[op.opcodeIndex].deprecatedBuiltinCode];
-    let name;
-    let index;
-    for (idx in metadata) {
-        if (metadata[idx].name.toLowerCase().replace(/\_/g, "") === str.toLowerCase().replace(/\_/g, "")) {
-            name = metadata[idx].name;
-            index = idx;
-            break;
-        }
-    }
+  while (viewer.hasChildNodes()) {
+    viewer.removeChild(viewer.firstChild);
+  }
 
-    let attribute = op.builtinOptions;
+  const op = operators[num];
+  const str = BuiltinOperator[data.operatorCodes[op.opcodeIndex].deprecatedBuiltinCode];
+  let name;
+  let index;
+  for (idx in metadata) {
+    if (metadata[idx].name.toLowerCase().replace(/\_/g, "") === str.toLowerCase().replace(/\_/g, "")) {
+      name = operators[num].name;
+      index = idx;
+      break;
+    }
+  }
+
+    let attribute = op?.builtinOptions;
     const inputs = op?.inputs;
     const outputs = op?.outputs;
     const category = op?.category;
@@ -98,85 +102,72 @@ function detail(num) {
         }
         viewer.appendChild(info);
     }
-    // const titleColor = opTitleColor[str];
-
-    // operatorName.setAttribute("style", `background-color: #${titleColor};`);
-    // operatorName.setAttribute("class", "op_title");
-    // operatorBox.appendChild(operatorName);
-
-    // if (inputs) {
-    //     let inputBox;
-    //     let inputName;
-    //     for (let i = 1; i < inputs.length; i++) {
-    //         inputBox = document.createElement("div");
-    //         inputName = document.createElement("span");
-    //         inputName.innerText = op.inputs[i].name;
-    //         inputBox.appendChild(inputName);
-    //         if (element) {
-    //             const inputShape = document.createElement("span");
-    //             inputShape.innerText = "<" + tensors[element.inputs[i]].shape.join("x") + ">";
-    //             inputBox.appendChild(inputShape);
-    //         }
-    //         operatorBox.appendChild(inputBox);
-    //     }
-    //     operatorBox.setAttribute("class", "node");
-    // }
+    viewer.appendChild(attributes);
+  }
 }
 
-function makeNode(str, element) {
-    let operator;
-    for (op of metadata) {
-        if (op.name.toLowerCase().replace(/\_/g, "") === str.toLowerCase().replace(/\_/g, "")) {
-            operator = op;
-            break;
-        }
+function makeNode(str, element, i) {
+  let operator;
+  for (op of metadata) {
+    if (op.name.toLowerCase().replace(/\_/g, "") === str.toLowerCase().replace(/\_/g, "")) {
+      operator = op;
+      break;
     }
+  }
 
-    const attributes = operator?.attributes;
-    const inputs = operator?.inputs;
-    const outputs = operator?.outputs;
-    const category = operator?.category;
+  const attributes = operator?.attributes;
+  const inputs = operator?.inputs;
+  const outputs = operator?.outputs;
+  const category = operator?.category;
 
-    const operatorBox = document.createElement("div");
-    const operatorName = document.createElement("h2");
-    operatorName.innerText = op.name;
+  const operatorBox = document.createElement("div");
+  const operatorName = document.createElement("h3");
+  operatorName.innerText = op.name;
+  operatorName.addEventListener("click", () => detail(i));
 
-    const titleColor = opTitleColor[str];
+  const titleColor = opTitleColor[str];
 
-    operatorName.setAttribute("style", `background-color: #${titleColor};`);
-    operatorName.setAttribute("class", "op_title");
-    operatorBox.appendChild(operatorName);
+  operatorName.setAttribute("style", `background-color: #${titleColor};`);
+  operatorName.setAttribute("class", "op_title");
+  operatorBox.appendChild(operatorName);
 
-    if (inputs) {
-        let inputBox;
-        let inputName;
-        for (let i = 1; i < inputs.length; i++) {
-            inputBox = document.createElement("div");
-            inputName = document.createElement("span");
-            inputName.innerText = op.inputs[i].name;
-            inputBox.appendChild(inputName);
-            if (element) {
-                const inputShape = document.createElement("span");
-                inputShape.innerText = "<" + tensors[element.inputs[i]].shape.join("x") + ">";
-                inputBox.appendChild(inputShape);
-            }
-            operatorBox.appendChild(inputBox);
-        }
-        graph.appendChild(operatorBox);
-        operatorBox.setAttribute("class", "node");
+  if (inputs) {
+    let inputBox;
+    let inputName;
+    for (let i = 1; i < inputs.length; i++) {
+      inputBox = document.createElement("div");
+      inputName = document.createElement("span");
+      inputName.innerText = op.inputs[i].name;
+      inputBox.appendChild(inputName);
+      if (element) {
+        const inputShape = document.createElement("span");
+        inputShape.innerText = "<" + tensors[element.inputs[i]].shape.join("x") + ">";
+        inputBox.appendChild(inputShape);
+      }
+      operatorBox.appendChild(inputBox);
     }
+  }
+
+  if (element?.builtinOptions?.fusedActivationFunction) {
+    const actType = document.createElement("h3");
+    actType.setAttribute("class", "act_type_box");
+    const typeName = activationFunctionType[String(element.builtinOptions.fusedActivationFunction)];
+    actType.innerText = typeName;
+    operatorBox.appendChild(actType);
+  }
+
+  graph.appendChild(operatorBox);
+  operatorBox.setAttribute("class", "node");
 }
 
-for (operator of operators) {
-    let num = data.operatorCodes[operator.opcodeIndex].deprecatedBuiltinCode;
-    let opName;
-    if (num >= 0) {
-        opName = BuiltinOperator[num];
-    } else {
-        opName = BuiltinOperator[String(num)];
-    }
+for (i in operators) {
+  let num = data.operatorCodes[operators[i].opcodeIndex].deprecatedBuiltinCode;
+  let opName;
+  if (num >= 0) {
+    opName = BuiltinOperator[num];
+  } else {
+    opName = BuiltinOperator[String(num)];
+  }
 
-    makeNode(opName, operator);
+  makeNode(opName, operators[i], i);
 }
-
-detail(1);

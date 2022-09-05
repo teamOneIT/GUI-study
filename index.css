@@ -1,11 +1,10 @@
 #main {
-    display: flex;
-    background-color: #8e8e8e;
+  display: flex;
+  background-color: #8e8e8e;
 }
 
 #graph {
-    width: 80%;
-    height: 100%;
+  width: 50%;
 }
 
 #viewer {
@@ -18,29 +17,46 @@ h3 {
 }
 
 #graph .node {
-    width: 150px;
-    height: auto;
-    background-color: #6e6e6e;
-    border-radius: 3px;
-    margin: 10px;
+  width: 150px;
+  height: auto;
+  background-color: #6e6e6e;
+  border-radius: 3px;
+  margin: 10px auto;
+  overflow: hidden;
 }
 
 #graph .node .op_title {
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    text-align: center;
-    margin: 0px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  text-align: center;
+  margin: 0px;
+  cursor: pointer;
 }
 
 body {
-    margin: 0px;
+  margin: 0px;
+  width: 100vw;
 }
 
 .subtitle {
-    width: 200px;
-    margin-right: 20px;
-    text-align: right;
-    margin-left: 30px;
+  width: 200px;
+  margin-right: 20px;
+  text-align: right;
+  margin-left: 30px;
+  text-overflow: ellipsis;
+}
+
+#viewer {
+  width: 50%;
+  background-color: #6e6e6e;
+}
+
+.act_type_box {
+  background-color: darkkhaki;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  margin-bottom: 0px;
+  margin-top: 5px;
 }
 
 .context {
