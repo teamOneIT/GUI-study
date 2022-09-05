@@ -1,0 +1,28 @@
+#main {
+  display: flex;
+  background-color: #8e8e8e;
+}
+
+#graph {
+  width: 100%;
+  height: 100%;
+}
+
+#graph .node {
+  width: 150px;
+  height: auto;
+  background-color: #6e6e6e;
+  border-radius: 3px;
+  margin: 10px;
+}
+
+#graph .node .op_title {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  text-align: center;
+  margin: 0px;
+}
+
+body {
+  margin: 0px;
+}
