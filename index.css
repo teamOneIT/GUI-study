@@ -7,6 +7,15 @@
   width: 50%;
 }
 
+#viewer {
+    background-color: #7e7e7e;
+    color: #ffffff;
+}
+
+h3 {
+    margin-left: 30px;
+}
+
 #graph .node {
   width: 150px;
   height: auto;
@@ -33,6 +42,7 @@ body {
   width: 200px;
   margin-right: 20px;
   text-align: right;
+  margin-left: 30px;
   text-overflow: ellipsis;
 }
 
@@ -47,4 +57,21 @@ body {
   border-bottom-right-radius: 3px;
   margin-bottom: 0px;
   margin-top: 5px;
+}
+
+.context {
+    width: 300px;
+    background-color: #8e8e8e;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-bottom: 2.5px;
+}
+
+.contexttype {
+    font-size: 12px;
+    padding-left: 4px;
+}
+
+.info {
+    font-weight: 100;
 }
