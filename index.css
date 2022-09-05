@@ -8,12 +8,12 @@
 }
 
 #viewer {
-    background-color: #7e7e7e;
-    color: #ffffff;
+  background-color: #7e7e7e;
+  color: #ffffff;
 }
 
 h3 {
-    margin-left: 30px;
+  margin-left: 30px;
 }
 
 #graph .node {
@@ -57,21 +57,22 @@ body {
   border-bottom-right-radius: 3px;
   margin-bottom: 0px;
   margin-top: 5px;
+  margin-left: 0px;
 }
 
 .context {
-    width: 300px;
-    background-color: #8e8e8e;
-    margin-bottom: 10px;
-    padding-left: 10px;
-    padding-bottom: 2.5px;
+  width: 300px;
+  background-color: #8e8e8e;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  padding-bottom: 2.5px;
 }
 
 .contexttype {
-    font-size: 12px;
-    padding-left: 4px;
+  font-size: 12px;
+  padding-left: 4px;
 }
 
 .info {
-    font-weight: 100;
+  font-weight: 100;
 }

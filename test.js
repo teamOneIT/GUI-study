@@ -21,87 +21,83 @@ function detail(num) {
     }
   }
 
-    let attribute = op?.builtinOptions;
-    const inputs = op?.inputs;
-    const outputs = op?.outputs;
-    const category = op?.category;
+  let attribute = op?.builtinOptions;
+  const inputs = op?.inputs;
+  const outputs = op?.outputs;
+  const category = op?.category;
 
-    const nodeProperties = document.createElement("div");
+  const nodeProperties = document.createElement("div");
+  const title = document.createElement("h3");
+  title.innerText = "NODE PROPERTIES";
+  nodeProperties.appendChild(title);
+  const info = document.createElement("div");
+  info.setAttribute("class", "info");
+  const type = document.createElement("div");
+  const location = document.createElement("div");
+  type.setAttribute("style", "display:flex;");
+  location.setAttribute("style", "display:flex;");
+  const locationSubtitle = document.createElement("div");
+  const locationContext = document.createElement("div");
+  const typeSubtitle = document.createElement("div");
+  const typeContext = document.createElement("div");
+
+  typeSubtitle.innerText = "type  ";
+  locationSubtitle.innerText = "location  ";
+  typeSubtitle.setAttribute("class", "subtitle");
+  locationSubtitle.setAttribute("class", "subtitle");
+  typeContext.setAttribute("class", "context");
+  locationContext.setAttribute("class", "context");
+  locationContext.innerText = num;
+  typeContext.innerText = name;
+  type.appendChild(typeSubtitle);
+  type.appendChild(typeContext);
+  location.appendChild(locationSubtitle);
+  location.appendChild(locationContext);
+  info.appendChild(type);
+  info.appendChild(location);
+  nodeProperties.appendChild(info);
+  viewer.appendChild(nodeProperties);
+
+  if (attribute) {
+    const temp = [];
+    attribute = Object.entries(attribute);
+    for (i in attribute) {
+      temp.push([metadata[index].attributes[i].name, attribute[i], metadata[index].attributes[i].type]);
+    }
+    temp.sort();
+    const attributes = document.createElement("div");
     const title = document.createElement("h3");
-    title.innerText = "NODE PROPERTIES";
-    nodeProperties.appendChild(title);
+    title.innerText = "ATTRIBUTES";
+    attributes.appendChild(title);
+    viewer.appendChild(attributes);
     const info = document.createElement("div");
     info.setAttribute("class", "info");
-    const type = document.createElement("div");
-    const location = document.createElement("div");
-    type.setAttribute("style", "display:flex;");
-    location.setAttribute("style", "display:flex;");
-    const locationSubtitle = document.createElement("div");
-    const locationContext = document.createElement("div");
-    const typeSubtitle = document.createElement("div");
-    const typeContext = document.createElement("div");
 
-    typeSubtitle.innerText = "type  ";
-    locationSubtitle.innerText = "location  ";
-    typeSubtitle.setAttribute("class", "subtitle");
-    locationSubtitle.setAttribute("class", "subtitle");
-    typeContext.setAttribute("class", "context");
-    locationContext.setAttribute("class", "context");
-    locationContext.innerText = num;
-    typeContext.innerText = name;
-    type.appendChild(typeSubtitle);
-    type.appendChild(typeContext);
-    location.appendChild(locationSubtitle);
-    location.appendChild(locationContext);
-    info.appendChild(type);
-    info.appendChild(location);
-    nodeProperties.appendChild(info);
-    viewer.appendChild(nodeProperties);
-
-    if (attribute) {
-        const temp = [];
-        attribute = Object.entries(attribute);
-        for (i in attribute) {
-            console.log(metadata[index].attributes[i].name);
-            console.log(attribute[i]);
-            temp.push([metadata[index].attributes[i].name, attribute[i], metadata[index].attributes[i].type]);
-        }
-        temp.sort();
-        console.log(temp);
-        const attributes = document.createElement("div");
-        const title = document.createElement("h3");
-        title.innerText = "ATTRIBUTES";
-        attributes.appendChild(title);
-        viewer.appendChild(attributes);
-        const info = document.createElement("div");
-        info.setAttribute("class", "info");
-
-        for (i in temp) {
-            const box = document.createElement("div");
-            box.setAttribute("style", "display:flex");
-            const subtitle = document.createElement("div");
-            subtitle.setAttribute("class", "subtitle");
-            subtitle.innerText = temp[i][0];
-            const context = document.createElement("div");
-            context.setAttribute("class", "context");
-            const contextType = document.createElement("span");
-            contextType.setAttribute("class", "contexttype");
-            if (temp[i][0] === "fused_activation_function") {
-                context.innerText = func[temp[i][1][1]];
-            } else if (temp[i][0] === "padding") {
-                context.innerText = "VALID";
-            } else {
-                context.innerText = temp[i][1][1];
-            }
-            contextType.innerText = " (type : " + temp[i][2] + ")";
-            context.appendChild(contextType);
-            box.appendChild(subtitle);
-            box.appendChild(context);
-            info.appendChild(box);
-            info.setAttribute("class", "info");
-        }
-        viewer.appendChild(info);
+    for (i in temp) {
+      const box = document.createElement("div");
+      box.setAttribute("style", "display:flex");
+      const subtitle = document.createElement("div");
+      subtitle.setAttribute("class", "subtitle");
+      subtitle.innerText = temp[i][0];
+      const context = document.createElement("div");
+      context.setAttribute("class", "context");
+      const contextType = document.createElement("span");
+      contextType.setAttribute("class", "contexttype");
+      if (temp[i][0] === "fused_activation_function") {
+        context.innerText = func[temp[i][1][1]];
+      } else if (temp[i][0] === "padding") {
+        context.innerText = "VALID";
+      } else {
+        context.innerText = temp[i][1][1];
+      }
+      contextType.innerText = " (type : " + temp[i][2] + ")";
+      context.appendChild(contextType);
+      box.appendChild(subtitle);
+      box.appendChild(context);
+      info.appendChild(box);
+      info.setAttribute("class", "info");
     }
+    attributes.appendChild(info);
     viewer.appendChild(attributes);
   }
 }
