@@ -100,6 +100,8 @@ function detail(num) {
     attributes.appendChild(info);
     viewer.appendChild(attributes);
   }
+  viewer.style.display = "";
+  toggle();
 }
 
 function makeNode(str, element, i) {
