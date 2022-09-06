@@ -14,15 +14,17 @@ body {
 #graph {
   width: 100%;
   overflow: scroll;
+  display: flex;
+  background-color: #8e8e8e;
 }
 
 #viewer {
-  background-color: #7e7e7e;
-  color: #ffffff;
+    background-color: #7e7e7e;
+    color: #ffffff;
 }
 
 h3 {
-  margin-left: 30px;
+    margin-left: 30px;
 }
 
 #graph .node {
@@ -32,7 +34,6 @@ h3 {
   border-radius: 3px;
   margin: 50px auto;
   overflow: hidden;
-  border: 2px solid black;
 }
 
 #graph .node .op_title {
@@ -41,46 +42,55 @@ h3 {
   text-align: center;
   margin: 0px;
   cursor: pointer;
-  z-index: 2000;
 }
 
 .subtitle {
-  width: 200px;
-  margin-right: 20px;
-  text-align: right;
-  margin-left: 30px;
-  text-overflow: ellipsis;
+    width: 180px;
+    margin-right: 20px;
+    text-align: right;
+    margin-left: 30px;
+    text-overflow: ellipsis;
 }
 
 #viewer {
-  width: 50%;
-  background-color: #6e6e6e;
+    width: 50%;
+    background-color: #6e6e6e;
 }
 
 .act_type_box {
-  background-color: darkkhaki;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
-  margin-bottom: 0px;
-  margin-top: 5px;
-  margin-left: 0px;
+    background-color: darkkhaki;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    margin-bottom: 0px;
+    margin-top: 5px;
+    margin-left: 0px;
 }
 
 .context {
-  width: 300px;
-  background-color: #8e8e8e;
-  margin-bottom: 10px;
-  padding-left: 10px;
-  padding-bottom: 2.5px;
+    width: 400px;
+    background-color: #8e8e8e;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-bottom: 2.5px;
 }
 
 .contexttype {
-  font-size: 12px;
-  padding-left: 4px;
+    font-size: 12px;
+    padding-left: 4px;
 }
 
 .info {
-  font-weight: 100;
+    font-weight: 100;
+}
+
+.iobox {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.iocontext {
+    font-weight: bold;
+    word-break: break-all;
 }
 
 #graph #test {
