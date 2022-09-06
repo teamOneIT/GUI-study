@@ -1,10 +1,21 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
 #main {
-    display: flex;
-    background-color: #8e8e8e;
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
 
 #graph {
-    width: 50%;
+  width: 100%;
+  overflow: scroll;
+  display: flex;
+  background-color: #8e8e8e;
 }
 
 #viewer {
@@ -17,25 +28,20 @@ h3 {
 }
 
 #graph .node {
-    width: 150px;
-    height: auto;
-    background-color: #6e6e6e;
-    border-radius: 3px;
-    margin: 10px auto;
-    overflow: hidden;
+  width: 150px;
+  height: auto;
+  background-color: #6e6e6e;
+  border-radius: 3px;
+  margin: 50px auto;
+  overflow: hidden;
 }
 
 #graph .node .op_title {
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    text-align: center;
-    margin: 0px;
-    cursor: pointer;
-}
-
-body {
-    margin: 0px;
-    width: 100vw;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  text-align: center;
+  margin: 0px;
+  cursor: pointer;
 }
 
 .subtitle {
@@ -85,4 +91,13 @@ body {
 .iocontext {
     font-weight: bold;
     word-break: break-all;
+}
+
+#graph #test {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
