@@ -91,10 +91,24 @@ function makeIOArea(sub, data) {
   return detail;
 }
 
+function createXButton() {
+  const xButton = document.createElement("button");
+  xButton.innerText = "닫기";
+  xButton.setAttribute("class", "x_button");
+  xButton.addEventListener("click", () => {
+    viewer.style.display = "none";
+  });
+
+  return xButton;
+}
+
 function detailPanel(num) {
   while (viewer.hasChildNodes()) {
     viewer.removeChild(viewer.firstChild);
   }
+
+  const xButton = createXButton();
+  viewer.appendChild(xButton);
 
   const op = operators[num];
   const str = BuiltinOperator[data.operatorCodes[op.opcodeIndex].deprecatedBuiltinCode];
@@ -164,6 +178,7 @@ function detailPanel(num) {
     }
     viewer.appendChild(inputsInfo);
   }
+  viewer.style.display = "";
 }
 
 function makeNode(str, element, i) {
