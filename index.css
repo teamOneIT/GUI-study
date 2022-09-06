@@ -20,6 +20,7 @@ body {
 #viewer {
   background-color: #7e7e7e;
   color: #ffffff;
+  width: 100%;
 }
 
 h3 {
@@ -44,16 +45,13 @@ h3 {
 }
 
 .subtitle {
-  width: 180px;
-  margin-right: 20px;
+  width: 15%;
+  margin-right: 2%;
   text-align: right;
-  margin-left: 30px;
+  margin-left: 5%;
   text-overflow: ellipsis;
-}
-
-#viewer {
-  width: 50%;
-  background-color: #6e6e6e;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .act_type_box {
@@ -66,7 +64,7 @@ h3 {
 }
 
 .context {
-  width: 400px;
+  width: 70%;
   background-color: #8e8e8e;
   margin-bottom: 10px;
   padding-left: 10px;
