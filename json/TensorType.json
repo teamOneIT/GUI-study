@@ -12,9 +12,6 @@ TensorType = {
     "10": "float64",
     "11": "complex128",
     "12": "uint64",
-    // Experimental: Resource and variant types are experimental, that are subject
-    // to change. Do not implement custom kernels using resource & variant types
-    // now.
     "13": "resource",
     "14": "variant",
     "15": "uint32"
